@@ -1,10 +1,6 @@
 class Breeding_calculator():
     """
     A class to calculate the breeds of the pals.
-
-    if the hash_data is True, the hash data will be used to find the breeds.
-    else, the data will be used to calculate the breeds.
-
     """
 
     def __init__(self, dataPath = 'src\data\data.json', use_hash_data = True) -> None:
@@ -16,6 +12,7 @@ class Breeding_calculator():
             self.DATA = loads(file.read())
 
         self.special_breedings: list = self.DATA["special-breedings"]["parents"]
+        self.special_childs: list = self.DATA["special-breedings"]["childs_names"]
         
         if use_hash_data:
             self.hash_data : dict = None

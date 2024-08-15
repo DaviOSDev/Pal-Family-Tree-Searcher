@@ -9,6 +9,8 @@
         
         "parents": [["Blazehowl", "Felbat"], ["Broncherry", "Fuack"], ["Dinossom", "Rayhound"], ["Eikthyrdeer", "Hangyu"], ["Elphidran", "Surfent"], ["Anubis", "Vanwyrm"], ["Frostallion", "Helzephyr"], ["Gobfin", "Rooby"], ["Mossanda", "Rayhound"], ["Hangyu", "Swee"], ["Incineram", "Maraith"], ["Jolthog", "Pengullet"], ["Kingpaca", "Reindrix"], ["Leezpunk", "Flambelle"], ["Mossanda", "Petallia"], ["Lyleen", "Menasting"], ["Mammorest", "Wumpo"], ["Mau", "Pengullet"], ["Mossanda", "Grizzbolt"], ["Grizzbolt", "Relaxaurus"], ["Pyrin", "Katress"], ["Relaxaurus", "Sparkit"], ["Reptyro", "Foxcicle"], ["Robinquill", "Fuddler"], ["Astegon", "Kitsun"], ["Surfent", "Dumud"], ["Suzaku", "Jormuntide"], ["Vanwyrm", "Foxcicle"], ["Frostallion", "Frostallion"], ["Jetragon", "Jetragon"], ["Jormuntide Ignis", "Jormuntide Ignis"], ["Necromus", "Necromus"], ["Paladius", "Paladius"]],
         
-        "childs": [670, 840, 810, 900, 530, 370, 100, 1100, 200, 1422, 580, 1360, 440, 1140, 250, 210, 290, 1440, 390, 140, 240, 270, 230, 1000, 60, 550, 30, 620, 120, 90, 315, 70, 80]
+        "childs": [670, 840, 810, 900, 530, 370, 100, 1100, 200, 1422, 580, 1360, 440, 1140, 250, 210, 290, 1440, 390, 140, 240, 270, 230, 1000, 60, 550, 30, 620, 120, 90, 315, 70, 80],
+
+        "childs_names": ["Blazehowl Noct", "Broncherry Aqua", "Dinossom Lux", "Eikthyrdeer Terra", "Elphidran Aqua", "Faleris", "Frostallion Noct", "Gobfin Ignis", "Grizzbolt", "Hangyu Cryst", "Incineram Noct", "Jolthog Cryst", "Kingpaca Cryst", "Leezpunk Ignis", "Lyleen", "Lyleen Noct", "Mammorest Cryst", "Mau Cryst", "Mossanda Lux", "Orserk", "Pyrin Noct", "Relaxaurus Lux", "Reptyro Cryst", "Robinquill Terra", "Shadowbeak", "Surfent Terra", "Suzaku Aqua", "Vanwyrm Cryst", "Frostallion", "Jetragon", "Jormuntide Ignis", "Necromus", "Paladius"]
         }
 }
