@@ -1,3 +1,4 @@
 *.pyc
 scrappingData
 palsimgs
+src/UI/*

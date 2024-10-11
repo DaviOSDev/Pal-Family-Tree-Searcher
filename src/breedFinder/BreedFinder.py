@@ -28,7 +28,7 @@ class Node:
         return f"{self.pal} At {id(self)}"
 
     def __repr__(self) -> str:
-        return self.pal
+        return f"{self.pal} At {id(self)}"
     
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Node):
@@ -45,7 +45,7 @@ class ParentsNode(Node):
         self.fathers = []
 
     def __repr__(self) -> str:
-        return f"{self.pal} At {id(self)},"
+        return f"{self.pal} At {id(self)}"
     
     def __str__(self) -> str:
         return f"{self.pal} At {id(self)}"
@@ -123,7 +123,7 @@ class Solver():
         for permutation in permutations(pal_list_indexes):
             if len(permutation) == len(pal_list):
                 permutations_list.append(permutation)
-
+        print("Permutations: ", permutations_list)
         return permutations_list
 
     def get_pals_by_permutations(self, pal_list: list[ParentsNode], permutations: list[tuple[int]]) -> list[Node]:
@@ -147,6 +147,7 @@ class Solver():
             father2 = pal_list[permutation[1]]
             father1.husband = father2
             father2.husband = father1
+            print("permutation[0] = ",permutation[0])
             result : ParentsNode = get_pal(father1, father2)
             result.add_father(father1, father2)
             sliced_permutation : tuple[int] = permutation[2:]
@@ -238,13 +239,16 @@ class Solver():
         self.canBeOnGraph = CanBeOnGraph
 
         def transform_to_node(pal_list: list[str]) -> list[ParentsNode]:
-            return [ParentsNode(pal) for pal in pal_list]
+            returnList : list[ParentsNode] = []
+            for pal in pal_list:
+                newNode = ParentsNode(pal=pal, husband=None, child=None)
+                returnList.append(newNode)
+            return returnList
         
         root = Node(root_pal)
         permutations = self.get_list_of_permutations(parents_list)
-        parents_list = transform_to_node(parents_list)
-        parents_list = self.get_pals_by_permutations(parents_list, permutations)
-        print(root)
+        parents_list_Nodes : ParentsNode = transform_to_node(parents_list)
+        parents_list = self.get_pals_by_permutations(parents_list_Nodes, permutations)
         graph = self.solve_tree(root, parents_list)
         if graph == None:
             print("Could not find the way.")
