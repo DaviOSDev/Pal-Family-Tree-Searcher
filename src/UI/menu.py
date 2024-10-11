@@ -1,15 +1,24 @@
 from tkinter import Tk, Toplevel, messagebox
+from yaml import load
 
-class Menu(Tk):
-
+class Menu(Tk):    
     def __init__(self, root):
         self.root = root
-        self.root.title('Menu')
-        self.root.geometry('300x300')
+        self.define_Window_configs()
         self.openWindows = []
         self.initButtons()
         self.breeds_Window = None
         self.breeds_Window = None
+
+    def define_Window_configs(self):
+        with open("src/UI/configs.json", 'r') as file:
+            from json import loads
+            configs = loads(file.read())
+
+        with configs["Menu-Window"] as configs:
+            self.root.title(configs["name"])
+            self.root.resizable(configs["resizable"], configs["resizable"])
+            self.root.geometry(f'{configs["width"]}x{configs["height"]}')
 
     def initButtons(self):
 
@@ -72,7 +81,6 @@ class Breed_finder_Window(Tk):
         self.root = root
         self.root.title('Breed Finder')
         self.root.geometry('300x300')
-        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def on_closing(self):
         self.root.destroy()

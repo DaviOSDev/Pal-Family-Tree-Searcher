@@ -7,6 +7,7 @@ class Breeding_calculator():
         """
         use_hash_data: bool -> If True, the hash data will be used to calculate the breeds.
         """
+        self.use_hash_data = use_hash_data
         with open(dataPath, 'r') as file:
             from json import loads
             self.DATA = loads(file.read())
@@ -78,7 +79,7 @@ class Breeding_calculator():
 
         """
 
-        if self.breeds_hash_data:
+        if self.use_hash_data:
             return self.breeds_hash_data[parent1][parent2]
         
         self.get_breed_result(parent1, parent2)
@@ -121,7 +122,7 @@ class Breeding_calculator():
 
         possible_parents = []
         
-        if self.parents_hash_data:
+        if self.use_hash_data:
             return self.parents_hash_data[child]
 
 
@@ -178,7 +179,7 @@ class Breeding_calculator():
 
         possible_parents = []
 
-        if self.parents_hash_data:
+        if self.use_hash_data:
             for pair in self.parents_hash_data[child]:
                 if parent in pair:
                     possible_parents.append(pair[0] if pair[0] != parent else pair[1])
@@ -205,5 +206,9 @@ class Breeding_calculator():
             self.breeds_hash_data = loads(file.read())
                     
         return self.breeds_hash_data
+
+if __name__ == "__main__":
+    bc = Breeding_calculator(use_hash_data=False)
+    print(bc.get_pal_by_breed_result("Frostallion", "Anubis"))
 
 # Path: src/breed-finder/BreedFinder.py
