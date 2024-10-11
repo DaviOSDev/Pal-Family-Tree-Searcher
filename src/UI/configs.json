@@ -1,9 +1,0 @@
-{   
-  "Menu-Window":{
-    "name": "Menu",
-    "width": 1280,
-    "height": 720,
-    "resizable": false,
-    "fullscreen": false
-  }
-}
