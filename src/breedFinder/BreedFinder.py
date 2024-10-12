@@ -1,4 +1,5 @@
 from BreedsCalculator import Breeding_calculator
+import copy
 
 class Breed():
 
@@ -123,7 +124,6 @@ class Solver():
         for permutation in permutations(pal_list_indexes):
             if len(permutation) == len(pal_list):
                 permutations_list.append(permutation)
-        print("Permutations: ", permutations_list)
         return permutations_list
 
     def get_pals_by_permutations(self, pal_list: list[ParentsNode], permutations: list[tuple[int]]) -> list[Node]:
@@ -145,45 +145,30 @@ class Solver():
         for permutation in permutations:
             father1 = pal_list[permutation[0]]
             father2 = pal_list[permutation[1]]
-            father1.husband = father2
-            father2.husband = father1
-            print("permutation[0] = ",permutation[0])
+            deepCopyfather1 = copy.deepcopy(father1)
+            deepCopyfather2 = copy.deepcopy(father2)
+            father1.husband = deepCopyfather2
+            father2.husband = deepCopyfather1
             result : ParentsNode = get_pal(father1, father2)
-            result.add_father(father1, father2)
+            result.add_father(deepCopyfather1, deepCopyfather2)
             sliced_permutation : tuple[int] = permutation[2:]
             if len(sliced_permutation) < 1:
                 continue
 
-            print(f"husbands: {father1} {father2}")
             for pal_index in sliced_permutation:
-                print(f"pal_index: {pal_index}")
-                print(f"Pal: {pal_list[pal_index]}")
-                print(f"Result: {result}")
-                print(f"Antique result: {result}")
                 antique_result = result
                 next_parent = pal_list[pal_index]
                 result.husband = next_parent
-                print(f"result husband: {result.husband}")
                 result = get_pal(result, next_parent)
                 result.add_father(antique_result, next_parent)
-            print(f"father1: {father1} father2: {father2}")
-            print_fathers(result)
             if all(result.pal != pal.pal for pal in pals):
-                print(f"Adding to pals: {result}")
                 pals.append(result)
-            print_fathers(result)
-        print("-"*100)
-        print("Pals:")
-        print(pals)
-        for pal in pals:
-            print_fathers(pal)
         return pals
     
     def solve_tree(self, root_pal: Node, pals_to_find: list[ParentsNode]) -> Node:
         def defineParentsNodes(first_parent : Node, second_parent : Node, child : Node) -> None:
             first_parent.child, second_parent.child = child, child
             first_parent.husband, second_parent.husband = second_parent, first_parent
-            print(f"First parent: {first_parent} Second parent: {second_parent} Child: {child}")
 
         def pal_in_pals_to_find(pal : str, pals_to_find: list[ParentsNode]) -> ParentsNode:
             for parent in pals_to_find:
@@ -289,7 +274,6 @@ def print_fathers(root : ParentsNode):
     for print_ in printl:
         print(print_[0], "⟺ ", print_[1])
         print("↓")
-    print("End\n\n")
 
 if __name__ == "__main__":
     solver = Solver()
